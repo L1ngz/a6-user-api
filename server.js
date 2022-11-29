@@ -49,10 +49,11 @@ app.post("/api/user/login", (req, res) => {
 	userService
 		.checkUser(req.body)
 		.then((user) => {
-			let token = jwt.sign(
-				{ _id: user._id, userName: user.userName },
-				process.env.JWT_SECRET
-			)
+			let payload = {
+				_id: user._id,
+				userName: user.userName,
+			}
+			var token = jwt.sign(payload, process.env.JWT_SECRET)
 			res.json({ message: "login successful", token: token })
 		})
 		.catch((msg) => {
