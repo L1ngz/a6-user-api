@@ -53,10 +53,10 @@ app.post("/api/user/login", (req, res) => {
 				{ _id: user._id, userName: user.userName },
 				process.env.JWT_SECRET
 			)
-			res.json({ message: token })
+			res.json({ message: "login successful", token: token })
 		})
 		.catch((msg) => {
-			res.status(422).json({ message: "login successful", token: token })
+			res.status(422).json({ message: msg })
 		})
 })
 
